@@ -1,11 +1,7 @@
 require "rails_helper"
 
 describe Movie do
-  it { is_expected.to allow_value("(abc)").for(:title) }
-  it { is_expected.to allow_value("[(abc)]").for(:title) }
-
-  it { is_expected.to_not allow_value("()").for(:title) }
-  it { is_expected.to_not allow_value("(abc").for(:title) }
-  it { is_expected.to_not allow_value("abc)").for(:title) }
-  it { is_expected.to_not allow_value(")abc(").for(:title) }
+  it 'title should be validate by TitleBracketsValidator' do
+    expect(Movie.validators).to include a_kind_of(TitleBracketsValidator)
+  end
 end
