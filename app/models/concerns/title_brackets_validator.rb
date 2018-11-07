@@ -1,19 +1,20 @@
 class TitleBracketsValidator < ActiveModel::Validator
   def validate(obj)
     chars = obj.title.split(//)
-
     brackets = {"[" => "]", "{" => "}", "(" => ")"}
     opening_brackets = []
     closing_brackets = []
+
     chars.each_with_index do |char, idx|
       if brackets.keys.include?(char)
         opening_brackets.push(char)
       elsif brackets.values.include?(char)
+        return obj.errors[:base] << 'empty brackets' if brackets[chars[idx - 1]] == char
         closing_brackets.push(char)
+        return obj.errors[:base] << 'wrong order or too much closing brackets' if closing_brackets.size > opening_brackets.size
       end
     end
 
-    return obj.errors[:base] << 'too much closing brackets' if opening_brackets.size < closing_brackets.size
-    return obj.errors[:base] << 'too much opeing brackets' if closing_brackets.size < opening_brackets.size
+    obj.errors[:base] << 'too much opeing brackets' if closing_brackets.size < opening_brackets.size
   end
 end
