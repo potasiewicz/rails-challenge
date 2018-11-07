@@ -9,12 +9,12 @@ class TitleBracketsValidator < ActiveModel::Validator
       if brackets.keys.include?(char)
         opening_brackets.push(char)
       elsif brackets.values.include?(char)
-        return obj.errors[:base] << 'empty brackets' if brackets[chars[idx - 1]] == char
+        return obj.errors[:title] << 'empty brackets' if brackets[chars[idx - 1]] == char
         closing_brackets.push(char)
-        return obj.errors[:base] << 'wrong order or too much closing brackets' if closing_brackets.size > opening_brackets.size
+        return obj.errors[:title] << 'wrong order or too much closing brackets' if closing_brackets.size > opening_brackets.size
       end
     end
 
-    obj.errors[:base] << 'too much opeing brackets' if closing_brackets.size < opening_brackets.size
+    obj.errors[:title] << 'too much opeing brackets' if closing_brackets.size < opening_brackets.size
   end
 end
