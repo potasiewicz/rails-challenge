@@ -10,4 +10,8 @@ class MovieDecorator < Draper::Decorator
   def rating
     details.data.attributes.rating
   end
+
+  def description
+    details.data.attributes.plot
+  end
 end
