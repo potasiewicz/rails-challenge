@@ -18,4 +18,6 @@
 # Ignore vendor directory.
 /vendor
 
+#Ingore Intellij dir
+/.idea
 coverage
