@@ -5,7 +5,7 @@ describe "movies/show.html.haml" do
     allow(controller).to receive(:user_signed_in?).and_return(true)
   end
 
-  it "displays rating" do
+  it "display rating" do
     assign(:movie, OpenStruct.new(rating: '9.2'))
 
     render
@@ -13,7 +13,7 @@ describe "movies/show.html.haml" do
     expect(rendered).to have_selector("span.badge", text: '9.2')
   end
 
-  it "displays plot" do
+  it "display plot" do
     assign(:movie, OpenStruct.new(plot: 'plot information'))
 
     render
@@ -21,7 +21,7 @@ describe "movies/show.html.haml" do
     expect(rendered).to have_selector("div", text: 'plot information')
   end
 
-  it "displays cover" do
+  it "display cover" do
     assign(:movie, OpenStruct.new(cover: 'http://movie.image.com'))
 
     render
