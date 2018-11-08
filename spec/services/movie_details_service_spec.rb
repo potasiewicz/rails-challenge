@@ -5,8 +5,6 @@ describe MovieDetailsService do
 
   shared_examples 'invalid api response' do
      it "should set rating and plot as n/a" do
-
-
        expect(subject.rating).to eq 'n/a'
        expect(subject.description).to eq 'n/a'
      end
@@ -17,9 +15,10 @@ describe MovieDetailsService do
   end
 
   describe "#load" do
+    let(:movie) {(create :movie).decorate}
     context 'api response status 200' do
-      let(:movie) {(create :movie).decorate}
       before(:each) {@api_request.to_return(body: '{"data":{"id":"6","type":"movie","attributes":{"title":"Godfather","plot":"coming soon","rating":9.2,"poster":"/godfather.jpg"}}}')}
+
       it 'should load rating and plot' do
         expect(subject.rating).to eq 9.2
         expect(subject.description).to eq 'coming soon'
@@ -27,22 +26,18 @@ describe MovieDetailsService do
     end
 
     context 'api response status 500' do
-      let(:movie) {(create :movie).decorate}
       before(:each) {@api_request.to_return(status: [500, "Internal Server Error"])}
       it_behaves_like "invalid api response"
     end
     context 'api timeout' do
-      let(:movie) {(create :movie).decorate}
       before(:each) {@api_request.to_timeout}
       it_behaves_like "invalid api response"
     end
 
     context 'movie dont exist in api' do
-      let(:movie) {(create :movie).decorate}
       before(:each) {@api_request.to_return(body: '{"message":"Couldn\'t find Movie"}', status: 404)}
       it_behaves_like "invalid api response"
     end
-
   end
 end
 
