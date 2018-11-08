@@ -3,16 +3,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all.decorate
-
-    hydra = Typhoeus::Hydra.new
-    @movies.each do |movie|
-      request = Typhoeus::Request.new("https://pairguru-api.herokuapp.com/api/v1/movies/#{URI.encode(movie.title)}", followlocation: true)
-      request.on_complete do |response|
-        movie.details = JSON.parse(response.body, object_class: OpenStruct)
-      end
-      hydra.queue(request)
-    end
-    hydra.run
+    MovieDetailsService.new(@movies).load
   end
 
   def show

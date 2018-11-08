@@ -6,4 +6,8 @@ class MovieDecorator < Draper::Decorator
       %w[abstract nightlife transport].sample +
       "?a=" + SecureRandom.uuid
   end
+
+  def rating
+    details.data.attributes.rating
+  end
 end
