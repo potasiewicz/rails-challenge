@@ -22,12 +22,9 @@ class MovieDetailsService
     request = Typhoeus::Request.new("#{@api_base_url}#{URI.encode(movie.title)}")
     request.on_complete do |response|
       if response.success?
-        movie.details = JSON.parse(response.body, object_class: OpenStruct)
+        movie.details = JSON.parse(response.body, object_class: OpenStruct).data.attributes
       else
-        default = {data: {attributes: {plot: 'n/a', rating: 'n/a'}}}
-        detail = JSON.parse(default.to_json, object_class: OpenStruct)
-
-        movie.details = detail
+        movie.details = OpenStruct.new({plot: 'n/a', rating: 'n/a'})
       end
     end
     @hydra.queue(request)
