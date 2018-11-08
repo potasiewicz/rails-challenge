@@ -7,10 +7,10 @@ class MovieDecorator < Draper::Decorator
   end
 
   def rating
-    details.data.attributes.rating
+    details.try(:data).try(:attributes).try(:rating)
   end
 
-  def description
-    details.data.attributes.plot
+  def plot
+    details.try(:data).try(:attributes).try(:plot)
   end
 end
