@@ -2,12 +2,12 @@ class MoviesController < ApplicationController
   before_action :authenticate_user!, only: [:send_info]
 
   def index
-    @movies = Movie.all.decorate
-    MovieDetailsService.new(@movies).load
+    @movies = MovieDetailsService.new.load_collection Movie.all.decorate
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    movie = MovieDecorator.find(params[:id])
+    @movie = MovieDetailsService.new.load movie
   end
 
   def send_info

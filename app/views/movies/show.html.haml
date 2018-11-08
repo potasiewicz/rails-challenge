@@ -1,5 +1,11 @@
-%h1= @movie.title
+%h1
+  = @movie.title
+  %span.badge= @movie.rating
 .jumbotron
-  = @movie.description
+  .media
+    .media-left
+      %img.img-rounded.media-object{ src: @movie.cover, height: 150 }
+    .media-body
+      = @movie.description
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'

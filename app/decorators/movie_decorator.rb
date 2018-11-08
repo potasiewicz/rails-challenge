@@ -1,5 +1,6 @@
 class MovieDecorator < Draper::Decorator
   delegate_all
+  decorates_finders
 
   def cover
     "https://pairguru-api.herokuapp.com/#{title.downcase.parameterize.underscore}.jpg"
