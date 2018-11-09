@@ -12,7 +12,7 @@ describe "Movies API" do
     expect(json['data'].size).to eq 2
   end
 
-  it 'api row should have id and title' do
+  it 'row should have id and title' do
     movie = create(:movie)
 
     get "/api/v1/movies/#{movie.id}"
@@ -24,7 +24,7 @@ describe "Movies API" do
     expect(json['data']['attributes']['title']).to eq movie.title
   end
 
-  it 'api should 404 when resource dont exists' do
+  it 'should return 404 when resource dont exists' do
 
     get "/api/v1/movies/123"
 
