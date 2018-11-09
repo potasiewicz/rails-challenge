@@ -12,6 +12,7 @@ gem "sass-rails"
 gem "sqlite3"
 gem "uglifier"
 gem "typhoeus"
+gem "jsonapi-resources"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false

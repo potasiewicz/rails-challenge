@@ -136,6 +136,10 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.1.0)
+    jsonapi-resources (0.9.3)
+      activerecord (>= 4.1)
+      concurrent-ruby
+      railties (>= 4.1)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.6.0)
@@ -315,6 +319,7 @@ DEPENDENCIES
   faker
   haml-rails
   jquery-rails
+  jsonapi-resources
   letter_opener
   listen
   pry-rails
