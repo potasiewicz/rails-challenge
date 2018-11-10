@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        comment:
+          taken: 'could add only one comment to each movies.'

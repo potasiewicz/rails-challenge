@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @comment.movie = @movie
     @comment.user = current_user
     @comment.save
-    redirect_to @movie, :flash => { :error => @comment.errors.full_messages }
+    redirect_to @movie, :flash => { :notice => @comment.errors.full_messages }
   end
 
   def comment_params
