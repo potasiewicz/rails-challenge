@@ -21,12 +21,13 @@
     -if @movie.comments.size == 0
       .empty #{t('comment.empty')}
     - @movie.comments.each do |comment|
-      .card
-        .card-header
-          Commented by:
-          %strong #{comment.user.name}
+      .media
+        .media-left
+          .lead.mark #{comment.user.name.chr.upcase}
+        .media-body
+          %strong= "@#{comment.user.name}"
           -if current_user == comment.user
-            #{link_to  "Delete", movie_comment_path(@movie, comment), method: :delete, data: {confirm: t('comment.destroy_confirmation')}}
-        .card-body
-          .card-text= comment.content
+            #{link_to  "Delete", movie_comment_path(@movie, comment), class: 'pull-right', method: :delete, data: {confirm: t('comment.destroy_confirmation')}}
+          %p= comment.content
+      %hr
 
