@@ -10,3 +10,13 @@
       %div=@movie.plot
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
+  %div
+    = form_with model: [@movie, Comment.new] do |form|
+      =form.text_area :content
+      =form.submit
+  %div
+    - @movie.comments.each do |comment|
+      %p
+        %div= comment.content
+        %div= comment.user.name
+
