@@ -10,22 +10,23 @@
       %div=@movie.plot
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
-  -if notice
-    .alert.alert-danger= notice.join(",")
   %div
     = form_with model: [@movie, Comment.new] do |form|
       .form-group
         %h4 Describe your impression about the movie
-        =form.text_area :content, class: 'form-control', placeholder: 'Tell us something...'
+        =form.text_area :content, class: 'form-control', placeholder: t('comment.placeholder')
       =form.submit class:'btn btn-primary'
   %div
     %h4 Comments
+    -if @movie.comments.size == 0
+      .empty #{t('comment.empty')}
     - @movie.comments.each do |comment|
       .card
         .card-header
           Commented by:
           %strong #{comment.user.name}
-          #{link_to "Delete"}
+          -if current_user == comment.user
+            #{link_to  "Delete", movie_comment_path(@movie, comment), method: :delete, data: {confirm: t('comment.destroy_confirmation')}}
         .card-body
           .card-text= comment.content
 
