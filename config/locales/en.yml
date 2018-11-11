@@ -30,4 +30,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  comment:
+    destroy_confirmation: 'Do you really want to remove your comment ?'
+    destroy: 'Your comment has been removed.'
+    created: 'Comment has been created.'
+    permission_deny: "You don't have permission to remove the comment!"
+    placeholder: 'Tell us something...'
+    empty: "The movie don't have comment yet."
+  activerecord:
+    errors:
+      models:
+        comment:
+          taken: 'could add only one comment to the movie.'

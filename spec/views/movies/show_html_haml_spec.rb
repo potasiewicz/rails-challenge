@@ -6,7 +6,7 @@ describe "movies/show.html.haml" do
   end
 
   it "display rating" do
-    assign(:movie, OpenStruct.new(rating: '9.2'))
+    assign(:movie, OpenStruct.new(rating: '9.2', comments: []))
 
     render
 
@@ -14,7 +14,7 @@ describe "movies/show.html.haml" do
   end
 
   it "display plot" do
-    assign(:movie, OpenStruct.new(plot: 'plot information'))
+    assign(:movie, OpenStruct.new(plot: 'plot information', comments: []))
 
     render
 
@@ -22,7 +22,7 @@ describe "movies/show.html.haml" do
   end
 
   it "display cover" do
-    assign(:movie, OpenStruct.new(cover: 'http://movie.image.com'))
+    assign(:movie, OpenStruct.new(cover: 'http://movie.image.com', comments: []))
 
     render
 
