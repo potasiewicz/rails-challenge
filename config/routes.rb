@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/commenters'
   devise_for :users
 
   root "home#welcome"

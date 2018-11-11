@@ -1,0 +1,5 @@
+%h2 The most active commenters in current week
+
+%ul.list-group
+  -@users.each do |user|
+    %li.list-group-item= user.name
