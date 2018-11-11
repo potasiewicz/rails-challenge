@@ -11,10 +11,10 @@
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
   %div
-    = form_with model: [@movie, Comment.new] do |form|
+    = form_with url: movie_comments_path(@movie), model: Comment.new do |form|
       .form-group
         %h4 Describe your impression about the movie
-        =form.text_area :content,id: 'comment', class: 'form-control', placeholder: t('comment.placeholder')
+        =form.text_area :content, id: 'comment', class: 'form-control', placeholder: t('comment.placeholder')
       =form.submit class:'btn btn-primary'
   %div
     %h4 Comments
