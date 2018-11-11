@@ -1,15 +1,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-
-  end
-
-  def new
-    @movie = Movie.find(params[:movie_id])
-    @comment = Comment.new comment_params
-  end
-
   def create
     @movie = Movie.find(params[:movie_id])
     @comment = Comment.new comment_params
@@ -26,7 +17,11 @@ class CommentsController < ApplicationController
   def destroy
     @movie = Movie.find(params[:movie_id])
     @comment = Comment.find(params[:id])
-    redirect_to @movie, alert: I18n.t('comment.permission_deny') unless current_user == @comment.user
+    unless current_user == @comment.user
+      redirect_to @movie, alert: I18n.t('comment.permission_deny')
+      return
+    end
+
     @comment.destroy
     redirect_to @movie, notice: I18n.t('comment.destroy')
   end
