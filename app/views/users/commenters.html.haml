@@ -1,0 +1,8 @@
+%h2 The most active commenters in current week
+
+%ul.list-group
+  -@commenters.each do |item|
+    %li.list-group-item
+      #{item[0]}
+      %div.pull-right
+        %span.badge #{item[1]}
